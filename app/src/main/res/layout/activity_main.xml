@@ -71,7 +71,7 @@
             android:orientation="vertical">
 
             <RadioGroup
-                android:id="@+id/radioGroup"
+                android:id="@+id/tips"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -94,6 +94,12 @@
                     android:text="20%" />
 
                 <RadioButton
+                    android:id="@+id/tip0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No Tip" />
+
+                <RadioButton
                     android:id="@+id/tipOtherText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -105,7 +111,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Enter Tip Amount"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    android:visibility="invisible" />
 
             </RadioGroup>
         </LinearLayout>

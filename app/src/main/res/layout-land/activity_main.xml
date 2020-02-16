@@ -53,7 +53,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="192dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -71,7 +71,7 @@
             android:orientation="vertical">
 
             <RadioGroup
-                android:id="@+id/radioGroup"
+                android:id="@+id/tips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -92,6 +92,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="20%" />
+
+                <RadioButton
+                    android:id="@+id/tip0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No Tip" />
 
                 <RadioButton
                     android:id="@+id/tipOtherText"
@@ -195,7 +201,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:orientation="horizontal">
 
         <Button
