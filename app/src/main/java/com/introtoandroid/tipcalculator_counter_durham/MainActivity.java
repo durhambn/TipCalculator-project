@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton tipButton;
     RadioButton otherTip;
 
+    //LinearLayout layout = findViewById(R.id.layout);
 
 
 
@@ -181,41 +186,170 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(checkedId == R.id.tipOtherText){
                     tipOther.setVisibility(View.VISIBLE);
-
+                    calculate.setEnabled(false);
                 }
                 else{
                     tipOther.setVisibility(View.INVISIBLE);
+                    String bill = billAmount.getText().toString();
+                    String ppl = people.getText().toString();
+                    //Boolean tips = tips.
+                    if(!bill.isEmpty() && !ppl.isEmpty() && tips.getCheckedRadioButtonId() != -1){
+                        calculate.setEnabled(true);
+                    }
                 }
             }
         });
 
+        //make sure tip entered in an int
+        tipOther.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!tipOther.getText().toString().isEmpty()){
+                    String bill = billAmount.getText().toString();
+                    String ppl = people.getText().toString();
+                    //Boolean tips = tips.
+                    if(!bill.isEmpty() && !ppl.isEmpty() && tips.getCheckedRadioButtonId() != -1){
+                        calculate.setEnabled(true);
+                    }
+                    else{
+                        calculate.setEnabled(false);
+                    }
+                }
+                else{
+                    calculate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        //make sure bill amount entered is an int
+        billAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String bill = billAmount.getText().toString();
+                String ppl = people.getText().toString();
+                //Boolean tips = tips.
+                if(!bill.isEmpty() && !ppl.isEmpty() && tips.getCheckedRadioButtonId() != -1){
+                    calculate.setEnabled(true);
+                }
+                else{
+                    calculate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        //make sure number of people entered is an int
+        people.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String bill = billAmount.getText().toString();
+                String ppl = people.getText().toString();
+                //Boolean tips = tips.
+                if(!bill.isEmpty() && !ppl.isEmpty() && tips.getCheckedRadioButtonId() != -1) {
+                    calculate.setEnabled(true);
+                }
+                else{
+                    calculate.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
-        //To Do: save state methods for text views
+/*
 
-
-        //To Do: make sure you can't press calculate if edit texts are empty or set to 0, or not tip selected
-
-       /* View.OnKeyListener mKeyListener = new View.OnKeyListener() {
+        OnKeyListener mKeyListener = new OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                String billAmountString = billAmount.getText().toString();
-
+                calculate.setEnabled(true);
                 switch (v.getId()) {
                     case R.id.billAmount:
-                        if(billAmountString.isEmpty()){
-
-                        }
                     case R.id.people:
-                    case R.id.tips:
-                        //if()
+                    //case R.id.tips:
+                        calculate.setEnabled(true);
+                        return true;
                 }
                 return false;
             }
 
-        };*/
+        };
+*/
+
 
     }
+/*
+
+    private OnKeyListener mKeyListener = new OnKeyListener() {
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            calculate.setEnabled(true);
+            switch (v.getId()) {
+                case R.id.billAmount:
+                case R.id.people:
+                case R.id.tips:
+                    calculate.setEnabled(true);
+                    return true;
+            }
+            return false;
+        }
+
+    };
+*/
+
+
+        //To Do: save state methods for text views
+    @Override
+    protected void onSaveInstanceState(Bundle outstate){
+        super.onSaveInstanceState(outstate);
+        String tipValue = tip.getText().toString();
+        outstate.putString("tip", tipValue);
+        String totalValue = total.getText().toString();
+        String perPersonValue = perPerson.getText().toString();
+        outstate.putString("total", totalValue);
+        outstate.putString("perPerson", perPersonValue);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstance){
+        super.onRestoreInstanceState(savedInstance);
+        String tipVal = savedInstance.getString("tip");
+        String totalVal = savedInstance.getString("total");
+        String perPersonVal = savedInstance.getString("perPerson");
+
+        tip.setText(tipVal);
+        total.setText(totalVal);
+        perPerson.setText(perPersonVal);
+    }
+
 
 
 }
