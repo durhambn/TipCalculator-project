@@ -1,24 +1,20 @@
 package com.introtoandroid.tipcalculator_counter_durham;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnKeyListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.RadioGroup.OnCheckedChangeListener;
 
-import org.w3c.dom.Text;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     RadioButton tipButton;
     RadioButton otherTip;
 
-    //LinearLayout layout = findViewById(R.id.layout);
 
 
 
@@ -86,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 //grab tip radio button
                 int selectedID = tips.getCheckedRadioButtonId();
                 tipButton = findViewById(selectedID);
-                Toast.makeText(MainActivity.this, tipButton.getText(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, tipButton.getText(), Toast.LENGTH_SHORT).show();
 
                 //bill amount in double
                 String billAmountString = billAmount.getText().toString();
@@ -105,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     String temp = ((EditText) findViewById(R.id.tipOther)).getText().toString();
-                    Toast.makeText(MainActivity.this, temp, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, temp, Toast.LENGTH_SHORT).show();
                     tip.setText(temp);
                     //total bill plus tip
                     value = billAmountNum + tipNum;
@@ -194,7 +189,13 @@ public class MainActivity extends AppCompatActivity {
                     String ppl = people.getText().toString();
                     //Boolean tips = tips.
                     if(!bill.isEmpty() && !ppl.isEmpty() && tips.getCheckedRadioButtonId() != -1){
-                        calculate.setEnabled(true);
+                        //check if bill and ppl is  not 0
+                        //since I used number edittext, char cannot be inputted
+                        Double billAmountNum = Double.parseDouble(bill);
+                        Integer pplNum = Integer.parseInt(ppl);
+                        if(billAmountNum !=0 && pplNum !=0) {
+                            calculate.setEnabled(true);
+                        }
                     }
                 }
             }
@@ -213,8 +214,17 @@ public class MainActivity extends AppCompatActivity {
                     String bill = billAmount.getText().toString();
                     String ppl = people.getText().toString();
                     //Boolean tips = tips.
+
+                    //I am allowing 0 to be inputted into the tips other space
+                    //even though there is a no top option
                     if(!bill.isEmpty() && !ppl.isEmpty() && tips.getCheckedRadioButtonId() != -1){
-                        calculate.setEnabled(true);
+                        //check if bill and ppl is  not 0
+                        //since I used number edittext, char cannot be inputted
+                        Double billAmountNum = Double.parseDouble(bill);
+                        Integer pplNum = Integer.parseInt(ppl);
+                        if(billAmountNum != 0 && pplNum != 0) {
+                            calculate.setEnabled(true);
+                        }
                     }
                     else{
                         calculate.setEnabled(false);
@@ -242,9 +252,15 @@ public class MainActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String bill = billAmount.getText().toString();
                 String ppl = people.getText().toString();
-                //Boolean tips = tips.
+
                 if(!bill.isEmpty() && !ppl.isEmpty() && tips.getCheckedRadioButtonId() != -1){
-                    calculate.setEnabled(true);
+                    //check if bill and ppl is  not 0
+                    //since I used number edittext, char cannot be inputted
+                    Double billAmountNum = Double.parseDouble(bill);
+                    Integer pplNum = Integer.parseInt(ppl);
+                    if(billAmountNum!=0 && pplNum != 0) {
+                        calculate.setEnabled(true);
+                    }
                 }
                 else{
                     calculate.setEnabled(false);
@@ -270,7 +286,13 @@ public class MainActivity extends AppCompatActivity {
                 String ppl = people.getText().toString();
                 //Boolean tips = tips.
                 if(!bill.isEmpty() && !ppl.isEmpty() && tips.getCheckedRadioButtonId() != -1) {
-                    calculate.setEnabled(true);
+                    //check if bill and ppl is  not 0
+                    //since I used number edittext, char cannot be inputted
+                    Double billAmountNum = Double.parseDouble(bill);
+                    Integer pplNum = Integer.parseInt(ppl);
+                    if(billAmountNum !=0 && pplNum != 0) {
+                        calculate.setEnabled(true);
+                    }
                 }
                 else{
                     calculate.setEnabled(false);
@@ -350,6 +372,19 @@ public class MainActivity extends AppCompatActivity {
         perPerson.setText(perPersonVal);
     }
 
+    private void showErrorAlert(String errorMessage, final int fieldId) {
+        new AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage(errorMessage)
+                .setNeutralButton("Close",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                findViewById(fieldId).requestFocus();
+                            }
+                        }).show();
+    }
 
 
 }

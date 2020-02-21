@@ -22,7 +22,7 @@
 
         <EditText
             android:id="@+id/billAmount"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
@@ -39,7 +39,7 @@
             android:layout_width="303dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Number of People Splitting Check:"
+            android:text="@string/number_of_people_splitting_check"
             android:textAlignment="center" />
 
         <EditText
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Tip:"
+            android:text="@string/tip"
             android:textAlignment="center" />
 
         <LinearLayout
@@ -80,38 +80,38 @@
                     android:id="@+id/tip10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="10%" />
+                    android:text="@string/_10" />
 
                 <RadioButton
                     android:id="@+id/tip15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="15%" />
+                    android:text="@string/_15" />
 
                 <RadioButton
                     android:id="@+id/tip20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="20%" />
+                    android:text="@string/_20" />
 
                 <RadioButton
                     android:id="@+id/tip0"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No Tip" />
+                    android:text="@string/no_tip" />
 
                 <RadioButton
                     android:id="@+id/tipOtherText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Other:" />
+                    android:text="@string/other" />
 
                 <EditText
                     android:id="@+id/tipOther"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Enter Tip Amount"
+                    android:hint="@string/enter_tip_amount"
                     android:inputType="numberDecimal"
                     android:visibility="invisible" />
 
@@ -129,7 +129,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Clear" />
+            android:text="@string/clear"
+            />
 
         <Button
             android:id="@+id/calculate"
@@ -137,7 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:enabled="false"
-            android:text="Calculate" />
+            android:text="@string/calculate" />
 
     </LinearLayout>
 
@@ -158,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:minWidth="88dp"
-                android:text="Tip:"
+                android:text="@string/tip"
                 android:textAlignment="center" />
 
             <TextView
@@ -167,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:minWidth="88dp"
-                android:text="$" />
+                android:text="@string/hint" />
 
         </LinearLayout>
 
@@ -182,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:minWidth="88dp"
-                android:text="Total:"
+                android:text="@string/total"
                 android:textAlignment="center" />
 
             <TextView
@@ -191,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:minWidth="88dp"
-                android:text="$" />
+                android:text="@string/hint" />
 
         </LinearLayout>
 
@@ -206,7 +207,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:minWidth="88dp"
-                android:text="Total Per Person:"
+                android:text="@string/total_per_person"
                 android:textAlignment="center" />
 
             <TextView
@@ -215,7 +216,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:minWidth="88dp"
-                android:text="$" />
+                android:text="@string/hint" />
 
         </LinearLayout>
 
