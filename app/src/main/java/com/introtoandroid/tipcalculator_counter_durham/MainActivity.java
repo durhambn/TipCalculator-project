@@ -251,6 +251,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+                String tip = tipOther.getText().toString();
+                if(tip.isEmpty()){
+                    showErrorAlert("Please Enter Amount", R.id.tipOther);
+                }
             }
         });
 
@@ -283,7 +287,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                String bill = billAmount.getText().toString();
 
+                if(bill.isEmpty()){
+                    showErrorAlert("Please Enter Amount", R.id.billAmount);
+                }
             }
         });
 
@@ -315,7 +323,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                
+                String ppl = people.getText().toString();
+                if(ppl.isEmpty()){
+                    showErrorAlert("Please Enter Amount", R.id.people);
+                }
             }
         });
 

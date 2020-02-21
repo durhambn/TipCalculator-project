@@ -237,7 +237,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/buttonCalc"
+            android:background="@drawable/custombutton"
             android:enabled="false"
             android:text="@string/calculate"
             android:textColor="@android:color/white" />
