@@ -5,6 +5,7 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -18,7 +19,9 @@
             android:layout_width="134dp"
             android:layout_height="wrap_content"
             android:text="@string/billAmount"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/Labels"
+            android:textColorHint="@color/Labels" />
 
         <EditText
             android:id="@+id/billAmount"
@@ -26,7 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:textColor="@color/input" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,7 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/number_of_people_splitting_check"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/Labels" />
 
         <EditText
             android:id="@+id/people"
@@ -63,7 +68,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/tip"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/Labels" />
 
         <LinearLayout
             android:layout_width="271dp"
@@ -80,31 +86,36 @@
                     android:id="@+id/tip10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/_10" />
+                    android:text="@string/_10"
+                    android:textColor="@color/Labels" />
 
                 <RadioButton
                     android:id="@+id/tip15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/_15" />
+                    android:text="@string/_15"
+                    android:textColor="@color/Labels" />
 
                 <RadioButton
                     android:id="@+id/tip20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/_20" />
+                    android:text="@string/_20"
+                    android:textColor="@color/Labels" />
 
                 <RadioButton
                     android:id="@+id/tip0"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/no_tip" />
+                    android:text="@string/no_tip"
+                    android:textColor="@color/Labels" />
 
                 <RadioButton
                     android:id="@+id/tipOtherText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/other" />
+                    android:text="@string/other"
+                    android:textColor="@color/Labels" />
 
                 <EditText
                     android:id="@+id/tipOther"
@@ -113,6 +124,7 @@
                     android:ems="10"
                     android:hint="@string/enter_tip_amount"
                     android:inputType="numberDecimal"
+                    android:textColor="@color/input"
                     android:visibility="invisible" />
 
             </RadioGroup>
@@ -129,16 +141,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@color/buttonClear"
             android:text="@string/clear"
-            />
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/calculate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/custombutton"
             android:enabled="false"
-            android:text="@string/calculate" />
+            android:text="@string/calculate"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 
@@ -160,7 +175,8 @@
                 android:layout_weight="1"
                 android:minWidth="88dp"
                 android:text="@string/tip"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/Labels" />
 
             <TextView
                 android:id="@+id/tipTotalAmount"
@@ -168,7 +184,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:minWidth="88dp"
-                android:text="@string/hint" />
+                android:text="@string/hint"
+                android:textColor="@color/output" />
 
         </LinearLayout>
 
@@ -184,7 +201,8 @@
                 android:layout_weight="1"
                 android:minWidth="88dp"
                 android:text="@string/total"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/Labels" />
 
             <TextView
                 android:id="@+id/totalPlusTip"
@@ -192,7 +210,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:minWidth="88dp"
-                android:text="@string/hint" />
+                android:text="@string/hint"
+                android:textColor="@color/output" />
 
         </LinearLayout>
 
@@ -208,7 +227,8 @@
                 android:layout_weight="1"
                 android:minWidth="88dp"
                 android:text="@string/total_per_person"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/Labels" />
 
             <TextView
                 android:id="@+id/totalPerPerson"
@@ -216,7 +236,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:minWidth="88dp"
-                android:text="@string/hint" />
+                android:text="@string/hint"
+                android:textColor="@color/output" />
 
         </LinearLayout>
 

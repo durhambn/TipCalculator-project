@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity {
 
     Button clear;
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton otherTip;
 
 
-
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         otherTip = (RadioButton) findViewById(R.id.tipOtherText);
 
 
+
         //button click listener on clear
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
                 tipOther.getText().clear();
                 tips.clearCheck();
                 tipOther.getText().clear();
+                tip.setText("");
+                total.setText("");
+                perPerson.setText("");
 
             }
         });
@@ -103,54 +109,60 @@ public class MainActivity extends AppCompatActivity {
                     //Toast.makeText(MainActivity.this, temp, Toast.LENGTH_SHORT).show();
                     tip.setText(temp);
                     //total bill plus tip
-                    value = billAmountNum + tipNum;
+                    value = Math.round((billAmountNum + tipNum) * 100.0) / 100.0;
                     total.setText(Double.toString(value));
 
                     //get num of people and divide check by it
 
-                    split = value/numOfPeople;
+                    split = Math.round((value/numOfPeople) * 100.0)/100.0;
                     perPerson.setText(split.toString());
                 }
                 else if(tipButton.getText().equals("10%")){
                 //bill amount : billAmountNum
                     // get 10% and set textview
-                    Double tipValue = billAmountNum * .10;
+                    Double tipValue = Math.round((billAmountNum * .10) * 100.0)/100.0;
+
                     tip.setText(tipValue.toString());
 
                     //get total bill and set text view
-                    value = tipValue + billAmountNum;
+                    value = Math.round((tipValue + billAmountNum) * 100.0)/100.0;
                     total.setText(value.toString());
 
                     //split bill and set text view
-                    split = value/numOfPeople;
+                    split = Math.round((value/numOfPeople) * 100.0) / 100.0;
+
                     perPerson.setText(split.toString());
 
                 }
                 else if(tipButton.getText().equals("15%")){
                     // get 15% and set textview
-                    Double tipValue = billAmountNum * .15;
+                    Double tipValue = Math.round((billAmountNum * .15) * 100.0)/100.0;
+
                     tip.setText(tipValue.toString());
 
                     //get total bill and set text view
-                    value = tipValue + billAmountNum;
+                    value = Math.round((tipValue + billAmountNum) * 100.0)/100.0;
                     total.setText(value.toString());
 
                     //split bill and set text view
-                    split = value/numOfPeople;
+                    split = Math.round((value/numOfPeople) * 100.0) / 100.0;
+
                     perPerson.setText(split.toString());
 
                 }
                 else if(tipButton.getText().equals("20%")){
                     // get 20% and set textview
-                    Double tipValue = billAmountNum * .20;
+                    Double tipValue = Math.round((billAmountNum * .20) * 100.0)/100.0;
+
                     tip.setText(tipValue.toString());
 
                     //get total bill and set text view
-                    value = tipValue + billAmountNum;
+                    value = Math.round((tipValue + billAmountNum) * 100.0)/100.0;
                     total.setText(value.toString());
 
                     //split bill and set text view
-                    split = value/numOfPeople;
+                    split = Math.round((value/numOfPeople) * 100.0) / 100.0;
+
                     perPerson.setText(split.toString());
 
                 }
@@ -164,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                     total.setText(billAmountNum.toString());
 
                     //split bill and set text view
-                    split = billAmountNum/numOfPeople;
+                    split = Math.round((billAmountNum/numOfPeople) * 100.0)/100.0;
                     perPerson.setText(split.toString());
 
                 }
@@ -193,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                         //since I used number edittext, char cannot be inputted
                         Double billAmountNum = Double.parseDouble(bill);
                         Integer pplNum = Integer.parseInt(ppl);
-                        if(billAmountNum !=0 && pplNum !=0) {
+                        if(billAmountNum >0 && pplNum >0) {
                             calculate.setEnabled(true);
                         }
                     }
@@ -216,13 +228,14 @@ public class MainActivity extends AppCompatActivity {
                     //Boolean tips = tips.
 
                     //I am allowing 0 to be inputted into the tips other space
-                    //even though there is a no top option
+                    //even though there is a no tip option
                     if(!bill.isEmpty() && !ppl.isEmpty() && tips.getCheckedRadioButtonId() != -1){
                         //check if bill and ppl is  not 0
                         //since I used number edittext, char cannot be inputted
                         Double billAmountNum = Double.parseDouble(bill);
                         Integer pplNum = Integer.parseInt(ppl);
-                        if(billAmountNum != 0 && pplNum != 0) {
+                        Double tipAmt = Double.parseDouble(tipOther.getText().toString());
+                        if(billAmountNum > 0 && pplNum > 0 && tipAmt>=0) {
                             calculate.setEnabled(true);
                         }
                     }
@@ -258,11 +271,12 @@ public class MainActivity extends AppCompatActivity {
                     //since I used number edittext, char cannot be inputted
                     Double billAmountNum = Double.parseDouble(bill);
                     Integer pplNum = Integer.parseInt(ppl);
-                    if(billAmountNum!=0 && pplNum != 0) {
+                    if(billAmountNum> 0 && pplNum > 0) {
                         calculate.setEnabled(true);
                     }
                 }
                 else{
+                    //showErrorAlert("Please Enter Amount", R.id.billAmount);
                     calculate.setEnabled(false);
                 }
             }
@@ -290,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                     //since I used number edittext, char cannot be inputted
                     Double billAmountNum = Double.parseDouble(bill);
                     Integer pplNum = Integer.parseInt(ppl);
-                    if(billAmountNum !=0 && pplNum != 0) {
+                    if(billAmountNum >0 && pplNum > 0) {
                         calculate.setEnabled(true);
                     }
                 }
